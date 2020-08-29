@@ -2,7 +2,11 @@
 
 This document is intended to show how to use the basics of nuclei for finding web vulnerabilities. It's by no means an
 exhaustive list, you can visit https://nuclei.projectdiscovery.io/nuclei/ for a more complete guide for customising template
-scanning / vulnerability assessment. 
+scanning / vulnerability assessment.
+
+Nuclei is a target scanner used to send requests to a target, based on templates, meaning it's extremely extendible, and can
+be adapted to scan different factors based on the template you're using. It's good at finding easy to spot vulns, and
+automatically checking CVE's across a range of pages. 
 
 1. Running nuclei with a single template.
 
