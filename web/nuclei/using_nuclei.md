@@ -24,7 +24,7 @@ automatically checking CVE's across a range of pages.
 	This will run the tool against all the hosts in urls.txt with all the templates in the cve's directory and returns 
 	the matched results.
 
-		nuclei -l urls.txt -t cves/ -o results.txt 
+		nuclei -l urls.txt -t cves/* -o results.txt 
 
 3. Example Scripted Workflow
 
