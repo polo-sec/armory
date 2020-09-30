@@ -12,6 +12,7 @@ The attack allows you to escalate to domain admin if you dump a domain admin's t
 You can think of a pass the ticket attack like reusing an existing ticket. We're not creating or destroying any tickets here we're simply reusing an existing ticket from another user on the domain and impersonating that ticket.
 
 ## Dumping tickets with Mimikatz
+Mimikatz is a very popular and powerful post-exploitation tool most commonly used for dumping user credentials inside of an active directory network however well be using mimikatz in order to dump a TGT from LSASS memory.
 
 You first need administrator privileges to conduct this attack using mimikatz. If you don't have an elevated command prompt mimikatz will not work properly. 
 
