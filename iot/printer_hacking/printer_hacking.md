@@ -15,7 +15,7 @@ Simply running:
 Will start an automatic printer discovery in your local network. It is also possible by running an Nmap scan on your whole network, but unfortunately, it might take a longer time. This is because the pret.py scan is focused on the ports which printer communication on by default, thus making it immensely faster.
 
 ## Enumerating
-Exposed CUPS servers on port 631 can be exploited by accessing them over http if they aren't properly protected. The details of certain functions can be read about here in CUP's documentation: https://www.cups.org/doc/network.html#TABLE2
+Exposed CUPS servers on port 631 (IPP Port) can be exploited by accessing them over http if they aren't properly protected. The details of certain functions can be read about here in CUP's documentation: https://www.cups.org/doc/network.html#TABLE2
 
 ## Exploiting Printers on a Local Network
 There are exactly three options you need to try when exploiting a printer using PRET:

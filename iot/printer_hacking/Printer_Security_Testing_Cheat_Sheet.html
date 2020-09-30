@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="UTF-8"/>
+<title>Printer Security Testing Cheat Sheet - Hacking Printers</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Printer_Security_Testing_Cheat_Sheet","wgTitle":"Printer Security Testing Cheat Sheet","wgCurRevisionId":637,"wgRevisionId":637,"wgArticleId":45,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Printer_Security_Testing_Cheat_Sheet","wgRelevantArticleId":45,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[]});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","skins.vector.js"]);
+} );</script>
+<link rel="stylesheet" href="/wiki/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.interface%7Cskins.vector.styles&amp;only=styles&amp;skin=vector"/>
+<meta name="ResourceLoaderDynamicStyles" content=""/>
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+<script async="" src="/wiki/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector"></script>
+<meta name="generator" content="MediaWiki 1.26.4"/>
+<link rel="shortcut icon" href="/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/opensearch_desc.php" title="Hacking Printers (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="http://hacking-printers.net/wiki/api.php?action=rsd"/>
+<link rel="alternate" type="application/atom+xml" title="Hacking Printers Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/wiki/skins/Vector/csshover.min.htc")}</style><![endif]-->
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Printer_Security_Testing_Cheat_Sheet skin-vector action-view">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+
+						<div class="mw-indicators">
+</div>
+			<h1 id="firstHeading" class="firstHeading" lang="en">Printer Security Testing Cheat Sheet</h1>
+									<div id="bodyContent" class="mw-body-content">
+									<div id="siteSub">From Hacking Printers</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Jump to:					<a href="#mw-head">navigation</a>, 					<a href="#p-search">search</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>To systematically check for vulnerabilities in a printing device, first perform a generic network <a rel="nofollow" class="external text" href="http://www.vulnerabilityassessment.co.uk/Penetration%20Test.html">assessment</a> and check for printer-specifc web based information leaks using <a href="/wiki/index.php/Praeda" title="Praeda">Praeda</a>. Then, use the following cheat sheet to quickly find flaws in <a href="/wiki/index.php/Fundamentals#Printer_Control_Languages" title="Fundamentals">printer languages</a> and <a href="/wiki/index.php/Fundamentals#Network_printing_protocols" title="Fundamentals">network protocols</a>.
+</p>
+<table class="wikitable">
+
+<tr>
+<th> Category </th>
+<th> Attack </th>
+<th> Protocol </th>
+<th> Testing
+</th></tr>
+<tr>
+<td rowspan="5"> <a href="/wiki/index.php/Denial_of_service" title="Denial of service">Denial of service</a>
+</td>
+<td> <a href="/wiki/index.php/Transmission_channel" title="Transmission channel">Transmission channel</a>    </td>
+<td> TCP </td>
+<td> <code>while true; do nc printer 9100; done</code>
+</td></tr>
+<tr>
+<td rowspan="2"> <a href="/wiki/index.php/Document_processing" title="Document processing">Document processing</a>
+</td>
+<td> <a href="/wiki/index.php/PostScript" title="PostScript">PS</a>
+</td>
+<td> <a href="/wiki/index.php/PRET" title="PRET">PRET</a> commands: <code>disable</code>, <code>hang</code>
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php/PJL" title="PJL">PJL</a>
+</td>
+<td> <a href="/wiki/index.php/PRET" title="PRET">PRET</a> commands: <code>disable</code>, <code>offline</code>
+</td></tr>
+<tr>
+<td rowspan="2"> <a href="/wiki/index.php/Physical_damage" title="Physical damage">Physical damage</a>
+</td>
+<td> <a href="/wiki/index.php/PostScript" title="PostScript">PS</a>
+</td>
+<td> <a href="/wiki/index.php/PRET" title="PRET">PRET</a> command: <code>destroy</code>
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php/PJL" title="PJL">PJL</a>
+</td>
+<td> <a href="/wiki/index.php/PRET" title="PRET">PRET</a> command: <code>destroy</code>
+</td></tr>
+<tr>
+<td rowspan="8"> <a href="/wiki/index.php/Privilege_escalation" title="Privilege escalation">Privilege escalation</a>
+</td>
+<td rowspan="3"> <a href="/wiki/index.php/Factory_defaults" title="Factory defaults">Factory defaults</a>
+</td>
+<td> <a href="/wiki/index.php/SNMP" title="SNMP">SNMP</a>
+</td>
+<td> <code>snmpset -v1 -c public printer 1.3.6.1.2.1.43.5.1.1.3.1 i 6</code>
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php/PML" title="PML">PML</a>
+</td>
+<td> <a href="/wiki/index.php/PRET" title="PRET">PRET</a> command: <code>reset</code>
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php/PostScript" title="PostScript">PS</a>
+</td>
+<td> <a href="/wiki/index.php/PRET" title="PRET">PRET</a> command: <code>reset</code>
+</td></tr>
+<tr>
+<td rowspan="4"> <a href="/wiki/index.php/Accounting_bypass" title="Accounting bypass">Accounting bypass</a>
+</td>
+<td> TCP
+</td>
+<td> Connect to printer directly, bypassing the print server
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php/IPP" title="IPP">IPP</a>
+</td>
+<td> Check if you can set a username without authentication
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php/PostScript" title="PostScript">PS</a>
+</td>
+<td> Check if PostScript code is preprocessed on print server
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php/PJL" title="PJL">PJL</a>
+</td>
+<td> <a href="/wiki/index.php/PRET" title="PRET">PRET</a> command: <code>pagecount</code>
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php/Fax_and_Scanner" title="Fax and Scanner">Fax and Scanner</a>         </td>
+<td> multiple </td>
+<td> Install printer driver and (ab)use fax/scan functionality
+</td></tr>
+<tr>
+<td rowspan="2"> <a href="/wiki/index.php/Print_job_access" title="Print job access">Print job access</a>
+</td>
+<td> <a href="/wiki/index.php/Print_job_retention" title="Print job retention">Print job retention</a>     </td>
+<td> <a href="/wiki/index.php/PostScript" title="PostScript">PS</a> </td>
+<td> <a href="/wiki/index.php/PRET" title="PRET">PRET</a> command: <code>capture</code>
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php/Print_job_manipulation" title="Print job manipulation">Print job manipulation</a>  </td>
+<td> <a href="/wiki/index.php/PostScript" title="PostScript">PS</a> </td>
+<td> <a href="/wiki/index.php/PRET" title="PRET">PRET</a> commands: <code>cross</code>, <code>overlay</code>, <code>replace</code>
+</td></tr>
+<tr>
+<td rowspan="5"> <a href="/wiki/index.php/Information_disclosure" title="Information disclosure">Information disclosure</a>
+</td>
+<td> <a href="/wiki/index.php/Memory_access" title="Memory access">Memory access</a>           </td>
+<td> <a href="/wiki/index.php/PJL" title="PJL">PJL</a> </td>
+<td> <a href="/wiki/index.php/PRET" title="PRET">PRET</a> command: <code>nvram dump</code>
+</td></tr>
+<tr>
+<td rowspan="2"> <a href="/wiki/index.php/File_system_access" title="File system access">File system access</a>
+</td>
+<td> <a href="/wiki/index.php/PostScript" title="PostScript">PS</a>
+</td>
+<td> <a href="/wiki/index.php/PRET" title="PRET">PRET</a> commands: <code>fuzz</code>, <code>ls</code>, <code>get</code>, <code>put</code>, …
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php/PJL" title="PJL">PJL</a>
+</td>
+<td> <a href="/wiki/index.php/PRET" title="PRET">PRET</a> commands: <code>fuzz</code>, <code>ls</code>, <code>get</code>, <code>put</code>, …
+</td></tr>
+<tr>
+<td rowspan="2"> <a href="/wiki/index.php/Credential_disclosure" title="Credential disclosure">Credential disclosure</a>
+</td>
+<td> <a href="/wiki/index.php/PostScript" title="PostScript">PS</a>
+</td>
+<td> <a href="/wiki/index.php/PRET" title="PRET">PRET</a> commands: <code>lock</code>, <code>unlock</code>
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php/PJL" title="PJL">PJL</a>
+</td>
+<td> <a href="/wiki/index.php/PRET" title="PRET">PRET</a> commands: <code>lock</code>, <code>unlock</code>
+</td></tr>
+<tr>
+<td rowspan="4"> <a href="/wiki/index.php/Code_execution" title="Code execution">Code execution</a>
+</td>
+<td rowspan="2"> <a href="/wiki/index.php/Buffer_overflows" title="Buffer overflows">Buffer overflows</a>
+</td>
+<td> <a href="/wiki/index.php/PJL" title="PJL">PJL</a>
+</td>
+<td> <a href="/wiki/index.php/PRET" title="PRET">PRET</a> command: <code>flood</code>
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php/LPD" title="LPD">LPD</a>
+</td>
+<td> <code>./lpdtest.py printer in "`python -c 'print "x"*3000'`"</code>
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php/Firmware_updates" title="Firmware updates">Firmware updates</a>        </td>
+<td> <a href="/wiki/index.php/PJL" title="PJL">PJL</a> </td>
+<td> Flip a bit, check if the modified firmware is still accepted
+</td></tr>
+<tr>
+<td> <a href="/wiki/index.php/Software_packages" title="Software packages">Software packages</a>       </td>
+<td> multiple </td>
+<td> Obtain an SDK and write your own proof-of-concept application
+</td></tr>
+</table>
+
+<!-- 
+NewPP limit report
+Cached time: 20200929205330
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.040 seconds
+Real time usage: 0.038 seconds
+Preprocessor visited node count: 1/1000000
+Preprocessor generated node count: 4/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 1/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+
+<!-- Saved in parser cache with key wiki:pcache:idhash:45-0!*!0!*!*!*!* and timestamp 20200929205330 and revision id 637
+ -->
+</div>					<div class="printfooter">
+						Retrieved from "<a dir="ltr" href="http://hacking-printers.net/wiki/index.php?title=Printer_Security_Testing_Cheat_Sheet&amp;oldid=637">http://hacking-printers.net/wiki/index.php?title=Printer_Security_Testing_Cheat_Sheet&amp;oldid=637</a>"					</div>
+				<div id='catlinks' class='catlinks catlinks-allhidden'></div>				<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+
+			<div id="mw-head">
+									<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+						<h3 id="p-personal-label">Personal tools</h3>
+						<ul>
+							<li id="pt-login"><a href="/wiki/index.php?title=Special:UserLogin&amp;returnto=Printer+Security+Testing+Cheat+Sheet" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>						</ul>
+					</div>
+									<div id="left-navigation">
+										<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+						<h3 id="p-namespaces-label">Namespaces</h3>
+						<ul>
+															<li  id="ca-nstab-main" class="selected"><span><a href="/wiki/index.php/Printer_Security_Testing_Cheat_Sheet"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+															<li  id="ca-talk"><span><a href="/wiki/index.php/Talk:Printer_Security_Testing_Cheat_Sheet"  title="Discussion about the content page [t]" accesskey="t" rel="discussion">Discussion</a></span></li>
+													</ul>
+					</div>
+										<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+												<h3 id="p-variants-label">
+							<span>Variants</span><a href="#"></a>
+						</h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+									</div>
+				<div id="right-navigation">
+										<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+						<h3 id="p-views-label">Views</h3>
+						<ul>
+															<li id="ca-view" class="selected"><span><a href="/wiki/index.php/Printer_Security_Testing_Cheat_Sheet" >Read</a></span></li>
+															<li id="ca-viewsource"><span><a href="/wiki/index.php?title=Printer_Security_Testing_Cheat_Sheet&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+															<li id="ca-history" class="collapsible"><span><a href="/wiki/index.php?title=Printer_Security_Testing_Cheat_Sheet&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+													</ul>
+					</div>
+										<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+						<h3 id="p-cactions-label"><span>More</span><a href="#"></a></h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+										<div id="p-search" role="search">
+						<h3>
+							<label for="searchInput">Search</label>
+						</h3>
+
+						<form action="/wiki/index.php" id="searchform">
+							<div id="simpleSearch">
+							<input type="search" name="search" placeholder="Search" title="Search Hacking Printers [f]" accesskey="f" id="searchInput"/><input type="hidden" value="Special:Search" name="title"/><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton"/><input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchButton" class="searchButton"/>							</div>
+						</form>
+					</div>
+									</div>
+			</div>
+			<div id="mw-panel">
+				<div id="p-logo" role="banner"><a class="mw-wiki-logo" href="/wiki/index.php/Main_Page"  title="Visit the main page"></a></div>
+						<div class="portal" role="navigation" id='p-navigation' aria-labelledby='p-navigation-label'>
+			<h3 id='p-navigation-label'>Navigation</h3>
+
+			<div class="body">
+									<ul>
+						<li id="n-mainpage-description"><a href="/wiki/index.php/Main_Page" title="Visit the main page [z]" accesskey="z">Main page</a></li><li id="n-recentchanges"><a href="/wiki/index.php/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li><li id="n-randompage"><a href="/wiki/index.php/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li><li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>					</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+			<h3 id='p-tb-label'>Tools</h3>
+
+			<div class="body">
+									<ul>
+						<li id="t-whatlinkshere"><a href="/wiki/index.php/Special:WhatLinksHere/Printer_Security_Testing_Cheat_Sheet" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li><li id="t-recentchangeslinked"><a href="/wiki/index.php/Special:RecentChangesLinked/Printer_Security_Testing_Cheat_Sheet" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li><li id="t-specialpages"><a href="/wiki/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li><li id="t-print"><a href="/wiki/index.php?title=Printer_Security_Testing_Cheat_Sheet&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li><li id="t-permalink"><a href="/wiki/index.php?title=Printer_Security_Testing_Cheat_Sheet&amp;oldid=637" title="Permanent link to this revision of the page">Permanent link</a></li><li id="t-info"><a href="/wiki/index.php?title=Printer_Security_Testing_Cheat_Sheet&amp;action=info" title="More information about this page">Page information</a></li>					</ul>
+							</div>
+		</div>
+				</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 2 July 2017, at 19:48.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/wiki/index.php/Hacking_Printers:Privacy_policy" title="Hacking Printers:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/wiki/index.php/Hacking_Printers:About" title="Hacking Printers:About">About Hacking Printers</a></li>
+											<li id="footer-places-disclaimer"><a href="/wiki/index.php/Hacking_Printers:General_disclaimer" title="Hacking Printers:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+											<li id="footer-poweredbyico">
+							<a href="//www.mediawiki.org/"><img src="/wiki/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>						</li>
+									</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"]);
+} );</script><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":143});
+} );</script>
+	</body>
+</html>
