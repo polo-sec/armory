@@ -30,3 +30,8 @@ In order to perform the attack, we'll be using both Rubeus as well as Impacket s
 This will dump the Kerberos hash for all kerberoastable accounts it can find on the target domain just like Rubeus does; however, this does not have to be on the targets machine and can be done remotely.
 
 3. hashcat -m 13100 -a 0 hash.txt Pass.txt - now you can crack those hashes
+
+## Kerberoasting Mitigation
+
+* Strong Service Passwords - If the service account passwords are strong then kerberoasting will be ineffective
+* Don't Make Service Accounts Domain Admins - Service accounts don't need to be domain admins, kerberoasting won't be as effective if you don't make service accounts domain admins.
