@@ -55,3 +55,26 @@ Will change your location to the Administrator's desktop.
 Note: You can always use the Get-Help cmdlet to obtain more information about a specific cmdlet. For example, 
 
 	Get-Help Select-String
+
+## Getting File Hashes
+With PowerShell, we can obtain the hash of a file by running the following command: 
+
+	Get-FileHash -Algorithm MD5 file.txt
+
+By comparing the verified file hash to the above cmdlet's output, you will know whether the file is authentic.
+
+## Using Strings in Powershell
+Strings scans the file you pass it for strings of a default length of 3 or more characters. You can use the Strings tool to peek inside this mysterious executable file. The tool is located within C:\Tools.
+
+	c:\Tools\strings64.exe -accepteula file.exe
+
+## Alternate Data Streams in PowerShell
+The command to view ADS using Powershell: 
+
+	Get-Item -Path file.exe -Stream *
+
+There are a few lines of output when you run this command. Pay particularly close attention to Stream and Length.
+
+We can use a built-in Windows tool, Windows Management Instrumentation, to launch the hidden file. The command to run to launch the hidden executable hiding within ADS: 
+
+	wmic process call create $(Resolve-Path file.exe:streamname)
