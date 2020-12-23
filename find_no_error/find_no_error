@@ -1,0 +1,1 @@
+"find / SEARCH -type f 2>&1 | grep -v "Permission" | grep -v "No such"
